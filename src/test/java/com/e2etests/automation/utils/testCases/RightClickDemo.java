@@ -1,0 +1,37 @@
+package com.e2etests.automation.utils.testCases;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class RightClickDemo {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "src/test/resource/drivers/chromedriver.exe");
+
+		// open chrome
+		WebDriver driver = new ChromeDriver();
+
+		// open url / app my store
+		driver.get("https://demoqa.com/buttons");
+
+		//maximize browser
+		driver.manage().window().maximize();
+		
+		//Instantiate Actions Class
+		Actions actions = new Actions(driver);
+		
+		WebElement btRightClick = driver.findElement(By.id("rightClickBtn"));
+		
+		actions.contextClick(btRightClick).perform();
+		
+		String msg = driver.findElement(By.id("rightClickMessage")).getText();
+		Assert.assertEquals("You have done a right click", msg);
+		
+		driver.quit();
+	}
+
+}
